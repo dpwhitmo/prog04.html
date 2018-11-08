@@ -19,7 +19,7 @@
 
 		<h1>Add new input lines to HTML entry form</h1>
 		
-		<p>Enable users to add a row of fields to an HTML input form. In this code, after the HTML loads, addForm() is called. Clicking the Add Line button calls a function, addLine(), which calls addField() once for each field in the new input line. The elements, label and input, are formatted using CSS. </p>
+		<p> Add more rows of people to the table below. </p>
 		
 		<button type="button" onclick="addLine();">Add Line</button>
 		<br />
@@ -30,7 +30,7 @@
 		
 		<h1>Generate array of objects</h1>
 		
-		<p>Loop through the HTML form lines and store the data into an array of objects, where each property of an object contains the data in the input field of the HTML entry form. </p>
+		<p> Information from the previous boxes displayed. </p>
 		
 		<button type="button" onclick="genObjectArray();">Generate and Display Array of Objects</button>
 		<br />
@@ -116,16 +116,16 @@ function addForm() {
 	newelement.setAttribute("name","fname"+currentLine);
 	newelement.setAttribute("id","fname"+currentLine);
 	newelement.setAttribute("type","text");
-	newelement.setAttribute("placeholder","Jane");
+	newelement.setAttribute("placeholder","");
 	newelement.setAttribute("size",10);
 	if (currentLine==0) newelement.setAttribute("autofocus","autofocus");
 	var fieldset1 = document.getElementById("fieldset1");
 	fieldset1.appendChild(newelement);
 
 	// add more fields 
-	addField("fieldset1", "lname", "Last", "text", "Doe", inputWidth);
-	addField("fieldset1", "age", "Age", "number", "18", inputWidth);
-	addField("fieldset1", "country", "Country", "text", "USA", inputWidth);
+	addField("fieldset1", "lname", "Last", "text", "", inputWidth);
+	addField("fieldset1", "age", "Age", "number", "", inputWidth);
+	addField("fieldset1", "country", "Country", "text", "", inputWidth);
 
 	// add line break 
 	var newelement = document.createElement("br");
