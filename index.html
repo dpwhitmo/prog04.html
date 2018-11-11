@@ -63,17 +63,11 @@
          <div id="div3">
          </div>
          <script>
-            // GLOBAL VARIABLES
             
             var currentLine = 0;
             var inputWidth = 10;
             var objArray = [];
             
-            // FUNCTIONS
-            
-            /* addForm()
-             * appends an entry form to an HTML element with id="div1"
-             */
             function addForm() {
             	// precondition: HTML must contain <div id="div1"> element
             
@@ -100,14 +94,11 @@
             	addLine();
             }
             
-            /* addLine()
-             * inserts all labels and input elements for one row of a form
-             */
             function addLine() {
             	// precondition: inputWidth global variable must be set
             	// precondition: call from addForm() so HTML element with id="fieldset1" exists
             
-            	addField("fieldset1", "givenName", "Given Name", "text", "Jane", inputWidth);
+            	addField("fieldset1", "gName", "Given Name", "text", "Jane", inputWidth);
             	addField("fieldset1", "surname", "Surname", "text", "Doe", inputWidth);
             	addField("fieldset1", "ageDay", "Solar Birth Day", "number", "18", inputWidth);
             	addField("fieldset1", "ageMonth", "Solar Birth Month", "number", "18", inputWidth);
@@ -173,11 +164,7 @@
             	f.appendChild(selectList);
             }
             
-            /* genObjectArray()
-             * generates content for an array of objects, 
-             * where each element of the array 
-             * is an object containing the data entered in one line of the form 
-             */
+        
             function genObjectArray() {
             	// precondition: HTML must contain <div id="div2"> element
             	// precondition: currentLine (global variable) must be set
@@ -185,7 +172,7 @@
             	// generate objArray from HTML form elements
             	for (i = 0; i < currentLine; i++) {
             		objArray[i] = {
-            			'givenName': document.getElementById("givenName" + i).value,
+            			'gName': document.getElementById("gName" + i).value,
             			'surname': document.getElementById("surname" + i).value,
             			'ageDay': parseInt(document.getElementById("ageDay" + i).value) ? parseInt(document.getElementById("ageDay" + i).value) : 0,
             			'ageMonth': parseInt(document.getElementById("ageMonth" + i).value) ? parseInt(document.getElementById("ageMonth" + i).value) : 0,
@@ -245,17 +232,17 @@
             		localAge = row.insertCell(-1);
             		localZodiac = row.insertCell(-1);
             		if (e.country == "China") {
-            			localName.appendChild(document.createTextNode(e.surname + " " + e.givenName));
+            			localName.appendChild(document.createTextNode(e.surname + " " + e.gName));
             			localDOB.appendChild(document.createTextNode(e.ageYear + "-" + e.ageMonth + "-" + e.ageDay));
             			localAge.appendChild(document.createTextNode(e.countryAge()));
             			var sign = ChineseZodiac(e.ageMonth, e.ageDay);
             			localZodiac.appendChild(document.createTextNode(sign));
             		}
             		else {
-            			localName.appendChild(document.createTextNode(e.givenName + " " + e.surname));
+            			localName.appendChild(document.createTextNode(e.gName + " " + e.surname));
             			localDOB.appendChild(document.createTextNode(e.ageMonth + "-" + e.ageDay + "-" + e.ageYear));
             			localAge.appendChild(document.createTextNode(e.countryAge()));
-            			var sign = WesternZodiac(e.ageMonth, e.ageDay);
+            			var sign = Zodiac(e.ageMonth, e.ageDay);
             			localZodiac.appendChild(document.createTextNode(sign));
             		}
             
