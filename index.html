@@ -1,10 +1,7 @@
 <!doctype html>
 <html>
    <head>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    
       <style>
          label {
          text-align: left;
@@ -96,9 +93,9 @@
             
             	addField("fieldset1", "gName", "Given Name", "text", "Jane", inputWidth);
             	addField("fieldset1", "surname", "Surname", "text", "Doe", inputWidth);
-            	addField("fieldset1", "ageDay", "Solar Birth Day", "number", "18", inputWidth);
-            	addField("fieldset1", "ageMonth", "Solar Birth Month", "number", "18", inputWidth);
-            	addField("fieldset1", "ageYear", "Solar Birth Year", "number", "1985", inputWidth);
+            	addField("fieldset1", "solarDay", "Solar Birth Day", "number", "18", inputWidth);
+            	addField("fieldset1", "solarMonth", "Solar Birth Month", "number", "18", inputWidth);
+            	addField("fieldset1", "solarYear", "Solar Birth Year", "number", "1985", inputWidth);
             	addSelect("fieldset1", "country", "Country");
             	var newelement = document.createElement("br");
             	var fieldset1 = document.getElementById("fieldset1");
@@ -106,9 +103,6 @@
             	currentLine++;
             }
             
-            /* addField()
-             * inserts one label one input element into a row of a form 
-             */
             function addField(formId, namePrefix, labelText, dataType, placeholder, fieldSize) {
             	// precondition: currentLine (global variable) must be set
             	// precondition: objArray[] (global variable) must be declared
@@ -170,14 +164,14 @@
             		objArray[i] = {
             			'gName': document.getElementById("gName" + i).value,
             			'surname': document.getElementById("surname" + i).value,
-            			'ageDay': parseInt(document.getElementById("ageDay" + i).value) ? parseInt(document.getElementById("ageDay" + i).value) : 0,
-            			'ageMonth': parseInt(document.getElementById("ageMonth" + i).value) ? parseInt(document.getElementById("ageMonth" + i).value) : 0,
-            			'ageYear': parseInt(document.getElementById("ageYear" + i).value) ? parseInt(document.getElementById("ageYear" + i).value) : 0,
+            			'solarDay': parseInt(document.getElementById("solarDay" + i).value) ? parseInt(document.getElementById("solarDay" + i).value) : 0,
+            			'solarMonth': parseInt(document.getElementById("solarMonth" + i).value) ? parseInt(document.getElementById("solarMonth" + i).value) : 0,
+            			'solarYear': parseInt(document.getElementById("solarYear" + i).value) ? parseInt(document.getElementById("solarYear" + i).value) : 0,
             			'country': document.getElementById("country" + i).value,
             			'countryAge': function () {
-            				var birthday = new Date(this.ageYear + "-" + this.ageMonth + "-" + this.ageDay);
+            				var birthday = new Date(this.solarYear + "-" + this.solarMonth + "-" + this.solarday);
             				var ageDifMs = Date.now() - birthday.getTime();
-            				var ageday = new Date(ageDifMs);
+            				var solarDay = new Date(ageDifMs);
             				var age = Math.abs(ageday.getUTCFullYear() - 1970);
             				if ('China' == this.country)
             					return age + 1;
@@ -229,16 +223,16 @@
             		localZodiac = row.insertCell(-1);
             		if (e.country == "China") {
             			localName.appendChild(document.createTextNode(e.surname + " " + e.gName));
-            			localDOB.appendChild(document.createTextNode(e.ageYear + "-" + e.ageMonth + "-" + e.ageDay));
+            			localDOB.appendChild(document.createTextNode(e.solarYear + "-" + e.solarMonth + "-" + e.solarDay));
             			localAge.appendChild(document.createTextNode(e.countryAge()));
-            			var sign = ChineseZodiac(e.ageMonth, e.ageDay);
+            			var sign = ChineseZodiac(e.solarMonth, e.solarDay);
             			localZodiac.appendChild(document.createTextNode(sign));
             		}
             		else {
             			localName.appendChild(document.createTextNode(e.gName + " " + e.surname));
-            			localDOB.appendChild(document.createTextNode(e.ageMonth + "-" + e.ageDay + "-" + e.ageYear));
+            			localDOB.appendChild(document.createTextNode(e.solarMonth + "-" + e.solarDay + "-" + e.solarYear));
             			localAge.appendChild(document.createTextNode(e.countryAge()));
-            			var sign = Zodiac(e.ageMonth, e.ageDay);
+            			var sign = Zodiac(e.solarMonth, e.solarDay);
             			localZodiac.appendChild(document.createTextNode(sign));
             		}
             
